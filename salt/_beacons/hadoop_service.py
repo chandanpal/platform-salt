@@ -62,17 +62,18 @@ def beacon(config):# pylint: disable=W0612,W0613
     #get hostname
     for host in __salt__['pnda.get_hosts_by_role']('HBASE','HBASE_MASTER'):
         ret_dict = dict()
+        hostname = host.split('.')[0]
         res = __salt__['network.connect'](host,'20550')['result']
         if not res:
            ret_dict['tag'] = 'service/hadoop/addon/status/stopped'
-           ret_dict['target'] = host
+           ret_dict['target'] = hostname
            ret_dict['service'] = 'hbase_rest'
            ret.append(ret_dict)
         ret_dict = dict()
         res = __salt__['network.connect'](host,'9090')['result']
         if not res:
            ret_dict['tag'] = 'service/hadoop/addon/status/stopped'
-           ret_dict['target'] = host
+           ret_dict['target'] = hostname
            ret_dict['service'] = 'hbase_thrift'
            ret.append(ret_dict)
     return ret
