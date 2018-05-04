@@ -7,7 +7,8 @@ hdp-httpfs_pkg:
 hdp-httpfs_create_link:
   file.symlink:
     - name: /etc/init.d/hadoop-httpfs
-    - target: /usr/hdp/current/hadoop-httpfs/etc/init.d/hadoop-httpfs
+    - target: /usr/hdp/current/hadoop-httpfs/etc/rc.d/init.d/hadoop-httpfs
+    - force: True
 
 hdp-httpfs_java_home:
   file.append:
